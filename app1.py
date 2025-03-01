@@ -51,14 +51,19 @@ print(df_historical.head())
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVR  # Import SVR instead of LinearRegression
 
-# ... (rest of the data loading and preparation code remains the same)
+# Assuming df_historical is your DataFrame from the previous code
+X = df_historical[["day"]]  # Features (day)
+y = df_historical["cases"]  # Target (cases)
+
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) 
 
 # Create and train the SVM model
 model = SVR(kernel='linear')  # Use SVR with a linear kernel
-model.fit(x_train, y_train)
+model.fit(X_train, y_train)
 
 # Predict next day's cases
-next_day = np.array([[31]]) 
+next_day = np.array([[31]])  # Reshape to a 2D array for prediction
 predicted_cases = model.predict(next_day)
 print(f"Predicted cases for Day 31: {int(predicted_cases[0])}")
 import streamlit as st
