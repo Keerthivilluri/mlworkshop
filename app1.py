@@ -55,7 +55,7 @@ from sklearn.svm import SVR  # Import SVR instead of LinearRegression
 
 # Create and train the SVM model
 model = SVR(kernel='linear')  # Use SVR with a linear kernel
-model.fit(X_train, y_train)
+model.fit(x_train, y_train)
 
 # Predict next day's cases
 next_day = np.array([[31]]) 
